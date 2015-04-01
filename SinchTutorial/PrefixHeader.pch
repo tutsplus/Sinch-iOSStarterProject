@@ -1,0 +1,15 @@
+//
+//  PrefixHeader.pch
+//  SinchTutorial
+//
+//  Created by Jordan Morgan on 3/12/15.
+//  Copyright (c) 2015 Jordan Morgan. All rights reserved.
+//
+
+#ifndef SinchTutorial_PrefixHeader_pch
+#define SinchTutorial_PrefixHeader_pch
+#import "FacebookManager.h"
+#import "AFNetworking.h"
+#import "UIKit+AFNetworking.h"
+#import "AppearanceManager.h"
+#endif
