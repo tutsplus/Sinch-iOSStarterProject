@@ -10,6 +10,5 @@
 
 @interface FindUsersViewController : UIViewController
 
-
 @end
 

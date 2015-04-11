@@ -7,15 +7,34 @@
 //
 
 #import "LoginViewController.h"
+#import "User.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface LoginViewController () <FBLoginViewDelegate>
+@interface LoginViewController () <FBLoginViewDelegate, CLLocationManagerDelegate>
 @property (weak, nonatomic) IBOutlet FBLoginView *vwFBLogIn;
 @property (weak, nonatomic) IBOutlet UILabel *lblLogin;
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong, nonatomic) CLLocation *userLocation;
 
 @end
 
 @implementation LoginViewController
+
+#pragma mark - Lazy Loaded Props
+- (CLLocationManager *)locationManager
+{
+    if(!_locationManager)
+    {
+        _locationManager = [CLLocationManager new];
+        _locationManager.delegate = self;
+        _locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
+        _locationManager.distanceFilter = 1609; //One mile
+        _locationManager.delegate = self;
+    }
+    
+    return _locationManager;
+}
 
 #pragma mark - View Lifecycle
 - (void)viewDidLoad
@@ -24,7 +43,41 @@
     
     //Facebook delegate
     self.vwFBLogIn.delegate = self;
-    self.vwFBLogIn.readPermissions = [[FacebookManager sharedManager] desiredUserPermissions];
+    self.vwFBLogIn.readPermissions = [FacebookManager desiredUserPermissions];
+
+    //Request location
+    if ([CLLocationManager locationServicesEnabled])
+    {
+        [self.locationManager requestWhenInUseAuthorization];
+        [self.locationManager startMonitoringSignificantLocationChanges];
+        [self.locationManager startUpdatingLocation];
+    }
+}
+
+#pragma mark - CLLocation Delegate
+//Check to see if they denied location services
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    NSLog(@"Failed to get location:\n\n%@", error.localizedDescription);
+}
+
+//Actual update of the location
+-(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    //Store user location
+    self.userLocation = newLocation;
+}
+
+#pragma mark - User Caching/API
+- (void)registerUser:(User *)curUser
+{
+    //Contact API to add user
+    [[UsersAPIClient sharedManager] createUser:curUser completion:^{
+        // Delay execution for 2 seconds before heading back to tab bar
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [self performSegueWithIdentifier:@"ToTabBar" sender:nil];
+        });
+    }];
 }
 
 #pragma mark - Facebook Login Info
@@ -35,12 +88,14 @@
     self.vwFBLogIn.alpha = 0.5f;
     self.vwFBLogIn.userInteractionEnabled = NO;
     
-    [[FacebookManager sharedManager] cacheUserInfo:user];
-
-    // Delay execution for 3 seconds before heading back to tab bar
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-        [self performSegueWithIdentifier:@"ToTabBar" sender:nil];
-    });
+    User *curUser = [[User alloc] initFromFacebookJSON:(NSDictionary *)user];
+    curUser.userLocation = self.userLocation;
+    
+    //Store locally
+    [[SessionCache manager] cacheUser:curUser];
+    
+    //Store user on the server
+    [self registerUser:curUser];
 }
 
 // Logged-in user experience

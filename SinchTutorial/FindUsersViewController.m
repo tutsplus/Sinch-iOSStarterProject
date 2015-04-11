@@ -5,18 +5,19 @@
 //  Created by Jordan Morgan on 3/9/15.
 //  Copyright (c) 2015 Jordan Morgan. All rights reserved.
 //
-
+#import "AppDelegate.h"
 #import "FindUsersViewController.h"
-#import "SinchTutTableViewCell.h"
+#import "ChatViewController.h"
 #import "User.h"
 #import "MBProgressHUD.h"
-#import <CoreLocation/CoreLocation.h>
 
-@interface FindUsersViewController ()  <UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate>
+@interface FindUsersViewController ()  <UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UITextField *txtFieldMeters;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *users;
-@property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) MBProgressHUD *indicatorView;
+@property (strong, nonatomic) User *curUser;
+@property (strong, nonatomic) UITapGestureRecognizer *tapToResignTextField;
 @end
 
 NSString * const CELL_ID = @"CELLID";
@@ -32,20 +33,6 @@ NSString * const CELL_ID = @"CELLID";
     }
     
     return _users;
-}
-
-- (CLLocationManager *)locationManager
-{
-    if(!_locationManager)
-    {
-        _locationManager = [CLLocationManager new];
-        _locationManager.delegate = self;
-        _locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
-        _locationManager.distanceFilter = 1609; //One mile
-        _locationManager.delegate = self;
-    }
-    
-    return _locationManager;
 }
 
 - (MBProgressHUD *)indicatorView
@@ -71,13 +58,42 @@ NSString * const CELL_ID = @"CELLID";
 {
     [super viewDidAppear:animated];
     
-    //Request location
-    if ([CLLocationManager locationServicesEnabled])
+    //Start a session
+    if (![SessionCache manager].token && FBSession.activeSession.state == FBSessionStateOpen)
     {
-        [self.locationManager requestWhenInUseAuthorization];
-        [self.locationManager startMonitoringSignificantLocationChanges];
-        [self.locationManager startUpdatingLocation];
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        [FacebookManager getUserInfo:^(User *curUser){
+            self.curUser = curUser;
+            
+            //Start a session
+            [self beginUserSession];
+        }];
     }
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:NO];
+}
+
+#pragma mark - Textfield Delegate
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if(!self.tapToResignTextField)
+    {
+        //Dismiss the textview
+        self.tapToResignTextField = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+        [self.view addGestureRecognizer:self.tapToResignTextField];
+    }
+    textField.keyboardType = UIKeyboardTypeNumberPad;
+}
+
+- (void)dismissKeyboard
+{
+    [self.txtFieldMeters resignFirstResponder];
+    [self.view removeGestureRecognizer:self.tapToResignTextField];
+    self.tapToResignTextField = nil;
 }
 
 #pragma mark - Tableview delegate/datasource
@@ -93,43 +109,64 @@ NSString * const CELL_ID = @"CELLID";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SinchTutTableViewCell *cell = (SinchTutTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:CELL_ID];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CELL_ID];
     
     if (self.users.count > indexPath.row)
     {
-        cell.lblUserName.text = [(User *)self.users[indexPath.row] userName];
-        cell.lblDistanceFromMe.text = [(User *)self.users[indexPath.row] locationText];
+        cell.textLabel.text = [(User *)self.users[indexPath.row] userName];
+        cell.detailTextLabel.text = [(User *)self.users[indexPath.row] locationText];
     }
     
     return cell;
 }
 
 #pragma mark Data Retrieval
-- (IBAction)refreshNearbyUsers:(id)sender
+- (void)beginUserSession
 {
-    //show activity view
-    [self.view addSubview:self.indicatorView];
-    [self.indicatorView showAnimated:YES whileExecutingBlock:^{
-        //TODO:Refresh lgogic
-        sleep(3);
-    }completionBlock:^{
-        self.indicatorView.hidden = YES;
+    [[UsersAPIClient sharedManager] beginUserSession:self.curUser completion:^{
+        [[SessionCache manager] cacheUser:self.curUser];
+        //We've got an access token, now get the rest of the users
+        [self getUsersAndReloadTableView];
+    }];
+}
+
+- (void)getUsersAndReloadTableView
+{
+    //Get the users
+    [[UsersAPIClient sharedManager] getRegisteredUsersWithMeters:self.txtFieldMeters.text.doubleValue completion:^(NSArray *users){
+        self.users = [[users sortedArrayWithOptions:0 usingComparator:^NSComparisonResult(User *obj1, User *obj2){
+            return [obj1.userName compare:obj2.userName options:NSCaseInsensitiveSearch];
+        }] mutableCopy];
+        
+        //Logged in user will show up if you don't specify meters
+        for (User *aUser in self.users)
+        {
+            if ([aUser.userID isEqualToString:self.curUser.userID])
+            {
+                [self.users removeObject:aUser];
+            }
+        }
+        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [self.tableView reloadData];
     }];
     
 }
 
-
-#pragma mark - CLLocation Delegate
-//Check to see if they denied location services
--(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+- (IBAction)refreshNearbyUsers:(id)sender
 {
-    NSLog(@"Failure copter:\n\n%@", error.localizedDescription);
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self getUsersAndReloadTableView];
 }
 
-//Actual update of the location
--(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+#pragma mark - Navigation
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    //Add a new user
-    [self.tableView reloadData];
+    if ([segue.identifier isEqualToString:@"ToChat"])
+    {
+        ChatViewController *chatVC = (ChatViewController *)segue.destinationViewController;
+        chatVC.selectedUser = self.users[[self.tableView indexPathForSelectedRow].row];
+    }
 }
 @end

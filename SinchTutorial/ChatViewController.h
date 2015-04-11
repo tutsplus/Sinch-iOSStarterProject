@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+@class User;
 
 @interface ChatViewController : UIViewController
-
+@property (strong, nonatomic) User *selectedUser;
 @end

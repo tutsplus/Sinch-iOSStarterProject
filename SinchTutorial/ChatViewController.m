@@ -9,6 +9,7 @@
 #import "ChatViewController.h"
 #import "UserAvatar.h"
 #import "UIButton+Bootstrap.h"
+#import "User.h"
 
 @interface ChatViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *btnMessage;
@@ -16,7 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblUserName;
 @property (weak, nonatomic) IBOutlet UILabel *lblSelectedUserName;
 @property (weak, nonatomic) IBOutlet UserAvatar *imgUserProfile;
-@property (weak, nonatomic) IBOutlet UserAvatar *imgSelectedUserProfile;
 
 @end
 
@@ -29,8 +29,10 @@
     [self.btnCall primaryStyle];
     [self.btnMessage primaryStyle];
 
-    self.lblUserName.text = [[FacebookManager sharedManager] getUserName];
-    self.imgUserProfile.image = [[FacebookManager sharedManager] getUserProfileImage];
+    User *curUser = [[SessionCache manager] cachedUser];
+    self.lblUserName.text = curUser.userName;
+    self.lblSelectedUserName.text = self.selectedUser.userName;
+    self.imgUserProfile.image = curUser.userProfileImage;
 }
 
 #pragma mark - Contact User

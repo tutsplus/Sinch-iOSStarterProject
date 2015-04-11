@@ -5,8 +5,9 @@
 //  Created by Jordan Morgan on 3/12/15.
 //  Copyright (c) 2015 Jordan Morgan. All rights reserved.
 //
-
+#import "AppDelegate.h"
 #import "FacebookManager.h"
+#import "User.h"
 #import <FacebookSDK/FacebookSDK.h>
 
 @interface FacebookManager ()
@@ -14,32 +15,14 @@
 @end
 
 @implementation FacebookManager
-+ (id)sharedManager
+
++ (NSArray *)desiredUserPermissions
 {
-    static FacebookManager *sharedFacebookManager = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedFacebookManager = [self new];
-    });
-    return sharedFacebookManager;
+    return @[@"public_profile", @"email",@"user_location"];
 }
 
-- (instancetype)init
++ (void)getUserProfileImage:(void (^)(NSData *))completion
 {
-    self = [super self];
-    
-    if (self)
-    {
-        self.desiredUserPermissions = @[@"public_profile", @"email",@"user_location"];
-    }
-    
-    return self;
-}
-
-- (void)cacheUserInfo:(id<FBGraphUser>)user
-{
-    [self saveUserName:user.name];
-    
     NSDictionary *params = @{
                              @"redirect": @NO,
                              @"height": @200,
@@ -47,7 +30,7 @@
                              @"type": @"normal",
                              };
     
-    /* make the API call */
+    //Contact Facebook API
     [FBRequestConnection startWithGraphPath:@"/me/picture" parameters:params HTTPMethod:@"GET" completionHandler:^(FBRequestConnection *connection, id result, NSError *error){
         
         if(!error)
@@ -55,40 +38,33 @@
             NSDictionary *dict = (NSDictionary*)result;
             NSURL *url = [NSURL URLWithString:dict[@"data"][@"url"]];
             NSData *data = [NSData dataWithContentsOfURL:url];
-            [self saveUserProfileImage:data];
+            if (completion)completion(data);
         }
         
     }];
-        
 }
 
-- (void)saveUserName:(NSString *)name
++ (void)getUserInfo:(void(^)(User *user))completion;
 {
-    //Save for later use so we don't have to make another request
-    [[NSUserDefaults standardUserDefaults] setObject:name forKey:@"Username"];
+    if (FBSession.activeSession.isOpen)
+    {
+        [FBRequestConnection startWithGraphPath:@"/me" parameters:nil HTTPMethod:@"GET" completionHandler:^(FBRequestConnection *connection, id result, NSError *error){
+            
+            if(!error)
+            {
+                User *curUser = [[User alloc] initFromFacebookJSON:(NSDictionary *)result];
+                if (completion) completion(curUser);
+            }
+            else
+            {
+                NSLog(@"ERROR: Attempted to get user info from Facebook and an error occured:%@.", error.localizedDescription);
+            }
+            
+        }];
+    }
+    else
+    {
+        NSLog(@"ERROR: Attempted to get user info from Facebook when a session was not active.");
+    }
 }
-
-- (void)saveUserProfileImage:(NSData *)data
-{
-    [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"Userprofile"];
-}
-
-- (NSString *)getUserName
-{
-    NSString *name = [[NSUserDefaults standardUserDefaults] objectForKey:@"Username"];
-    return name ? name : @"";
-}
-
-- (UIImage *)getUserProfileImage
-{
-    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"Userprofile"];
-    return data ? [[UIImage alloc] initWithData:data] : [UIImage imageNamed:@"NoAvatar"];
-}
-
-- (void)flushData
-{
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Username"];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Userprofile"];
-}
-
 @end

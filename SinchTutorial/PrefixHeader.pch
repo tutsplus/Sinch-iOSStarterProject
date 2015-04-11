@@ -9,7 +9,7 @@
 #ifndef SinchTutorial_PrefixHeader_pch
 #define SinchTutorial_PrefixHeader_pch
 #import "FacebookManager.h"
-#import "AFNetworking.h"
-#import "UIKit+AFNetworking.h"
+#import "UsersAPIClient.h"
 #import "AppearanceManager.h"
+#import "SessionCache.h"
 #endif

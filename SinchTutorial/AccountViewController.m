@@ -9,6 +9,7 @@
 #import "AccountViewController.h"
 #import "UserAvatar.h"
 #import "UIButton+Bootstrap.h"
+#import "User.h"
 #import <FacebookSDK/FacebookSDK.h>
 
 @interface AccountViewController () <FBLoginViewDelegate>
@@ -25,8 +26,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    self.lblLoggedInAs.text = [[FacebookManager sharedManager] getUserName];
-    self.imgAvatar.image = [[FacebookManager sharedManager] getUserProfileImage];
+    User *curUser = [[SessionCache manager] cachedUser];
+    self.lblLoggedInAs.text = curUser.userName;
+    self.imgAvatar.image = curUser.userProfileImage;
     [self.btnInbox primaryStyle];
 }
 
