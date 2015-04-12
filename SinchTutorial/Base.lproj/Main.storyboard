@@ -135,15 +135,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.40000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="lBJ-Uv-3hF" userLabel="NameUser">
-                                <rect key="frame" x="176" y="267" width="128" height="24"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="128" id="W82-hg-Yxa"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WW7-HK-zDc">
                                 <rect key="frame" x="16" y="388" width="288" height="34"/>
                                 <constraints>
@@ -173,24 +164,33 @@
                                     <action selector="startCall:" destination="UWP-fB-ntT" eventType="touchUpInside" id="aZL-Yr-sBp"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.40000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="lBJ-Uv-3hF" userLabel="NameUser">
+                                <rect key="frame" x="176" y="267" width="128" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="128" id="W82-hg-Yxa"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="6kL-MF-VbV" firstAttribute="leading" secondItem="6ev-OU-GXc" secondAttribute="trailing" constant="8" id="1ts-gM-tiQ"/>
                             <constraint firstItem="f5g-as-wt1" firstAttribute="top" secondItem="aUO-dq-PcI" secondAttribute="bottom" constant="43" id="4pf-js-JMb"/>
-                            <constraint firstItem="6ev-OU-GXc" firstAttribute="top" secondItem="pAE-v4-b8f" secondAttribute="bottom" constant="45" id="EQJ-CP-sZb"/>
                             <constraint firstItem="aUO-dq-PcI" firstAttribute="top" secondItem="WW7-HK-zDc" secondAttribute="bottom" constant="20" id="HjS-vS-wKc"/>
                             <constraint firstItem="lBJ-Uv-3hF" firstAttribute="leading" secondItem="6kL-MF-VbV" secondAttribute="trailing" constant="8" id="Jfe-KR-79s"/>
                             <constraint firstItem="WW7-HK-zDc" firstAttribute="centerX" secondItem="aUO-dq-PcI" secondAttribute="centerX" id="Kal-0g-OFm"/>
                             <constraint firstItem="6ev-OU-GXc" firstAttribute="leading" secondItem="MaW-zf-XuD" secondAttribute="leadingMargin" id="Qdx-M0-JQJ"/>
+                            <constraint firstItem="lBJ-Uv-3hF" firstAttribute="centerY" secondItem="6kL-MF-VbV" secondAttribute="centerY" constant="0.5" id="Qn1-4N-ibm"/>
                             <constraint firstAttribute="centerX" secondItem="pAE-v4-b8f" secondAttribute="centerX" id="Ry1-6P-9v5"/>
                             <constraint firstItem="WW7-HK-zDc" firstAttribute="top" relation="lessThanOrEqual" secondItem="6kL-MF-VbV" secondAttribute="bottom" multiplier="1.1" constant="56.899999999999977" id="T1z-4i-Ap8"/>
+                            <constraint firstItem="6kL-MF-VbV" firstAttribute="centerY" secondItem="6ev-OU-GXc" secondAttribute="centerY" constant="-0.5" id="T4B-PG-uFH"/>
                             <constraint firstItem="pAE-v4-b8f" firstAttribute="top" secondItem="aFI-wC-bq5" secondAttribute="bottom" constant="30" id="UXD-rh-NtP"/>
                             <constraint firstAttribute="centerX" secondItem="WW7-HK-zDc" secondAttribute="centerX" id="VAz-al-7A5"/>
                             <constraint firstItem="lBJ-Uv-3hF" firstAttribute="trailing" secondItem="MaW-zf-XuD" secondAttribute="trailingMargin" id="b2P-hK-ksr"/>
                             <constraint firstItem="WW7-HK-zDc" firstAttribute="width" secondItem="aUO-dq-PcI" secondAttribute="width" id="d66-cN-UMl"/>
                             <constraint firstItem="6kL-MF-VbV" firstAttribute="centerX" secondItem="pAE-v4-b8f" secondAttribute="centerX" id="imS-c3-qSm"/>
-                            <constraint firstItem="lBJ-Uv-3hF" firstAttribute="top" secondItem="pAE-v4-b8f" secondAttribute="bottom" constant="45" id="qil-xv-HGi"/>
                             <constraint firstItem="6kL-MF-VbV" firstAttribute="top" secondItem="pAE-v4-b8f" secondAttribute="bottom" constant="34" id="rMw-Ro-ho6"/>
                             <constraint firstItem="WW7-HK-zDc" firstAttribute="height" secondItem="aUO-dq-PcI" secondAttribute="height" id="xUS-3b-ZZL"/>
                         </constraints>
