@@ -35,7 +35,7 @@
 }
 
 #pragma mark - Initiate or Accept Call
-- (IBAction)makeOAccepetCallFromSelectedUser:(UIButton *)sender
+- (IBAction)makeOrAccepetCallFromSelectedUser:(UIButton *)sender
 {
     //TODO: Accept/Call logic
 }

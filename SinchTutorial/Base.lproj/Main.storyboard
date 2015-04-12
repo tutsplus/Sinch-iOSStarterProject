@@ -484,7 +484,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="makeOAccepetCallFromSelectedUser:" destination="zV4-pv-vq0" eventType="touchUpInside" id="vo9-Ze-QFh"/>
+                                    <action selector="makeOrAccepetCallFromSelectedUser:" destination="zV4-pv-vq0" eventType="touchUpInside" id="QKc-X7-TY8"/>
                                 </connections>
                             </button>
                         </subviews>
