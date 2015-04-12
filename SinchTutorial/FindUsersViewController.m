@@ -5,9 +5,8 @@
 //  Created by Jordan Morgan on 3/9/15.
 //  Copyright (c) 2015 Jordan Morgan. All rights reserved.
 //
-#import "AppDelegate.h"
 #import "FindUsersViewController.h"
-#import "ChatViewController.h"
+#import "ContactViewController.h"
 #import "User.h"
 #import "MBProgressHUD.h"
 
@@ -125,6 +124,11 @@ NSString * const CELL_ID = @"CELLID";
 {
     [[UsersAPIClient sharedManager] beginUserSession:self.curUser completion:^{
         [[SessionCache manager] cacheUser:self.curUser];
+        
+        //Init sinch client
+        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        [delegate sinchClientWithUserId:self.curUser.userID];
+        
         //We've got an access token, now get the rest of the users
         [self getUsersAndReloadTableView];
     }];
@@ -139,13 +143,16 @@ NSString * const CELL_ID = @"CELLID";
         }] mutableCopy];
         
         //Logged in user will show up if you don't specify meters
+        NSUInteger idxOfCurUser = -1;
         for (User *aUser in self.users)
         {
             if ([aUser.userID isEqualToString:self.curUser.userID])
             {
-                [self.users removeObject:aUser];
+                idxOfCurUser = [self.users indexOfObject:aUser];
+                break;
             }
         }
+        if (idxOfCurUser != -1) [self.users removeObjectAtIndex:idxOfCurUser];
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [self.tableView reloadData];
@@ -163,10 +170,10 @@ NSString * const CELL_ID = @"CELLID";
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"ToChat"])
+    if ([segue.identifier isEqualToString:@"Contact"])
     {
-        ChatViewController *chatVC = (ChatViewController *)segue.destinationViewController;
-        chatVC.selectedUser = self.users[[self.tableView indexPathForSelectedRow].row];
+        ContactViewController *contactVC = (ContactViewController *)segue.destinationViewController;
+        contactVC.selectedUser = self.users[[self.tableView indexPathForSelectedRow].row];
     }
 }
 @end

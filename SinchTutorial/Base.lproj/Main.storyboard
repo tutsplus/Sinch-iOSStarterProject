@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D130a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -30,19 +30,19 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="udj-TT-PcN">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="U8d-pH-OHG">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="UWP-fB-ntT" kind="push" identifier="ToChat" id="biZ-Vw-4bW"/>
+                                            <segue destination="UWP-fB-ntT" kind="push" identifier="Contact" id="biZ-Vw-4bW"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -58,10 +58,10 @@
                                     <constraint firstAttribute="width" constant="58" id="RyI-WD-M0M"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MNR-A2-xki">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ex. 250" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MNR-A2-xki">
                                 <rect key="frame" x="82" y="83" width="150" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -72,7 +72,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="meters." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S6T-oE-lO6">
                                 <rect key="frame" x="246" y="87" width="58" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -111,7 +111,7 @@
         <!--Chat or Call-->
         <scene sceneID="CUo-mi-850">
             <objects>
-                <viewController id="UWP-fB-ntT" userLabel="Chat or Call" customClass="ChatViewController" sceneMemberID="viewController">
+                <viewController id="UWP-fB-ntT" userLabel="Chat or Call" customClass="ContactViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aFI-wC-bq5"/>
                         <viewControllerLayoutGuide type="bottom" id="f5g-as-wt1"/>
@@ -123,7 +123,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="+" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6kL-MF-VbV">
                                 <rect key="frame" x="152" y="256" width="16" height="45"/>
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.40000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="6ev-OU-GXc" userLabel="NameSelectedUser">
@@ -132,7 +132,7 @@
                                     <constraint firstAttribute="width" constant="128" id="xQE-Ly-HVr"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.40000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="lBJ-Uv-3hF" userLabel="NameUser">
@@ -141,7 +141,7 @@
                                     <constraint firstAttribute="width" constant="128" id="W82-hg-Yxa"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WW7-HK-zDc">
@@ -205,6 +205,7 @@
                         <outlet property="lblSelectedUserName" destination="6ev-OU-GXc" id="ROF-xy-0TY"/>
                         <outlet property="lblUserName" destination="lBJ-Uv-3hF" id="CPu-Nu-bYc"/>
                         <segue destination="Zce-R4-kZg" kind="push" identifier="Messaging" id="EMd-Xd-9YF"/>
+                        <segue destination="zV4-pv-vq0" kind="push" identifier="Call" id="mAC-bu-AHf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Che-s5-c08" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -261,7 +262,7 @@
                                     <constraint firstAttribute="height" constant="21" id="fBq-Js-uwh"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="beh-FH-6no" customClass="FBLoginView">
@@ -434,7 +435,89 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gYb-wT-dhX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1528" y="-311"/>
+            <point key="canvasLocation" x="1508" y="-643"/>
+        </scene>
+        <!--Call-->
+        <scene sceneID="0tP-NT-RZZ">
+            <objects>
+                <viewController id="zV4-pv-vq0" customClass="CallingViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XqG-ab-pST"/>
+                        <viewControllerLayoutGuide type="bottom" id="E78-Ch-5sa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pHB-tP-VPV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bEL-eQ-oNS">
+                                <rect key="frame" x="16" y="349" width="288" height="30"/>
+                                <state key="normal" title="Reject">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="rejectOrHangUpCallFromSelectedUser:" destination="zV4-pv-vq0" eventType="touchUpInside" id="hwu-VH-bdy"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Call with" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sFo-Yx-Tq0">
+                                <rect key="frame" x="16" y="109" width="288" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="27" id="3EI-N9-ejh"/>
+                                    <constraint firstAttribute="width" constant="288" id="MhV-r2-ijc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XRy-QH-ESB" userLabel="Call Status">
+                                <rect key="frame" x="16" y="153" width="288" height="27"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wxH-JS-2iP">
+                                <rect key="frame" x="16" y="285" width="288" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" priority="999" constant="288" id="5wu-wC-R9n"/>
+                                    <constraint firstAttribute="height" constant="30" id="xVW-GS-Cpg"/>
+                                </constraints>
+                                <state key="normal" title="Call">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="makeOAccepetCallFromSelectedUser:" destination="zV4-pv-vq0" eventType="touchUpInside" id="vo9-Ze-QFh"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="XRy-QH-ESB" firstAttribute="centerX" secondItem="sFo-Yx-Tq0" secondAttribute="centerX" id="7f6-It-7pb"/>
+                            <constraint firstItem="sFo-Yx-Tq0" firstAttribute="top" secondItem="XqG-ab-pST" secondAttribute="bottom" constant="45" id="AKB-Cc-Gtj"/>
+                            <constraint firstAttribute="centerX" secondItem="wxH-JS-2iP" secondAttribute="centerX" id="Bwz-gg-me1"/>
+                            <constraint firstItem="wxH-JS-2iP" firstAttribute="leading" secondItem="pHB-tP-VPV" secondAttribute="leadingMargin" id="HKj-76-crl"/>
+                            <constraint firstItem="XRy-QH-ESB" firstAttribute="width" secondItem="sFo-Yx-Tq0" secondAttribute="width" id="Imq-TV-wDs"/>
+                            <constraint firstItem="bEL-eQ-oNS" firstAttribute="trailing" secondItem="pHB-tP-VPV" secondAttribute="trailingMargin" id="J0i-Ag-ZXO"/>
+                            <constraint firstItem="bEL-eQ-oNS" firstAttribute="top" secondItem="wxH-JS-2iP" secondAttribute="bottom" constant="34" id="K3L-pQ-uNc"/>
+                            <constraint firstItem="wxH-JS-2iP" firstAttribute="top" relation="lessThanOrEqual" secondItem="XRy-QH-ESB" secondAttribute="bottom" constant="105" id="MFx-6Q-quW"/>
+                            <constraint firstItem="wxH-JS-2iP" firstAttribute="trailing" secondItem="pHB-tP-VPV" secondAttribute="trailingMargin" id="SAV-cH-LrL"/>
+                            <constraint firstItem="bEL-eQ-oNS" firstAttribute="leading" secondItem="pHB-tP-VPV" secondAttribute="leadingMargin" id="SXP-MJ-j0J"/>
+                            <constraint firstItem="XRy-QH-ESB" firstAttribute="top" secondItem="sFo-Yx-Tq0" secondAttribute="bottom" constant="17" id="Sqc-E6-210"/>
+                            <constraint firstItem="E78-Ch-5sa" firstAttribute="top" secondItem="bEL-eQ-oNS" secondAttribute="bottom" constant="140" id="bB2-gV-YaN"/>
+                            <constraint firstAttribute="centerX" secondItem="sFo-Yx-Tq0" secondAttribute="centerX" id="bQf-2T-THB"/>
+                            <constraint firstItem="wxH-JS-2iP" firstAttribute="centerX" secondItem="bEL-eQ-oNS" secondAttribute="centerX" id="seK-rm-8yw"/>
+                            <constraint firstItem="XRy-QH-ESB" firstAttribute="height" secondItem="sFo-Yx-Tq0" secondAttribute="height" id="ymP-Nw-516"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Call" id="1ZF-IX-gXN"/>
+                    <connections>
+                        <outlet property="btnAcceptOrCall" destination="wxH-JS-2iP" id="PuJ-33-XSJ"/>
+                        <outlet property="btnDeny" destination="bEL-eQ-oNS" id="7w1-la-Tge"/>
+                        <outlet property="lblCallStatus" destination="XRy-QH-ESB" id="5N2-cr-47s"/>
+                        <outlet property="lblCallWith" destination="sFo-Yx-Tq0" id="rBS-DE-yfm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F6O-xw-rf2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1508" y="60"/>
         </scene>
         <!--Initial Login -->
         <scene sceneID="fwm-7L-o7D">

@@ -10,14 +10,22 @@
 #import "UsersTableViewCell.h"
 #import "RecipientTableViewCell.h"
 #import "TextInsetLabel.h"
+#import "User.h"
+#import <Sinch/Sinch.h>
 
-@interface MessagingViewController () <UITableViewDataSource, UITableViewDataSource, UITextFieldDelegate>
+typedef NS_ENUM(int, MessageDirection)
+{
+    Incoming,
+    Outgoing
+};
+
+@interface MessagingViewController () <UITableViewDataSource, UITableViewDataSource, UITextFieldDelegate, SINMessageClientDelegate>
 @property (strong, nonatomic) NSMutableArray *messages;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextField *messageTextField;
 @property (weak, nonatomic) IBOutlet UIButton *btnSendMessage;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *messagingBottomConstraint;
-
+@property (strong, nonatomic) id<SINMessageClient> sinchMessageClient;
 @end
 
 static NSString * CELL_ID_RECIPIENT = @"RecipientCell";
@@ -30,12 +38,19 @@ static NSString * CELL_ID_USER = @"UserCell";
 {
     [super viewDidLoad];
     
+    //Init our array to hold chat messages
+    self.messages = [NSMutableArray new];
+    
     //Tableview Setup
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 66.0f;
     
     //Textfield Setup
     [self textFieldSetup];
+    
+    //Setup Sinch message client
+    self.sinchMessageClient = [((AppDelegate *)[[UIApplication sharedApplication] delegate]).client messageClient];
+    self.sinchMessageClient.delegate = self;
 }
 
 #pragma mark - Textfield Delegate & Helpers
@@ -64,9 +79,7 @@ static NSString * CELL_ID_USER = @"UserCell";
         [self.view layoutIfNeeded];
     }];
     
-    //Scroll to bottom
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:19 inSection:0];
-    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    [self scrollToBottom];
 }
 
 - (void)keyboardWillBeHidden:(NSNotification *)note
@@ -82,13 +95,24 @@ static NSString * CELL_ID_USER = @"UserCell";
 - (void)dismissKeyboard
 {
     [self.messageTextField resignFirstResponder];
+    [self scrollToBottom];
+}
+
+- (void)scrollToBottom
+{
+    //Scroll to bottom
+    if (self.messages.count > 0)
+    {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.messages.count - 1 inSection:0];
+        [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    }
 }
 
 #pragma mark - Table View Datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     //return self.messages.count;
-    return 20;
+    return self.messages.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -98,7 +122,20 @@ static NSString * CELL_ID_USER = @"UserCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [UITableViewCell new];
+    UITableViewCell *cell;
+    id<SINMessage> message = [self.messages[indexPath.row] firstObject];
+    MessageDirection direction = (MessageDirection)[[self.messages[indexPath.row] lastObject] intValue];
+    
+    if (direction == Incoming)
+    {
+        cell = [self.tableView dequeueReusableCellWithIdentifier:CELL_ID_RECIPIENT];
+        ((RecipientTableViewCell *)cell).message.text = message.text;
+    }
+    else
+    {
+        cell = [self.tableView dequeueReusableCellWithIdentifier:CELL_ID_USER];
+        ((UsersTableViewCell *)cell).message.text = message.text;
+    }
     
     return cell;
 }
@@ -107,6 +144,41 @@ static NSString * CELL_ID_USER = @"UserCell";
 - (IBAction)sendMessage:(id)sender
 {
     [self dismissKeyboard];
+    SINOutgoingMessage *outgoingMessage = [SINOutgoingMessage messageWithRecipient:self.selectedUser.userID text:self.messageTextField.text];
+    [self.sinchMessageClient sendMessage:outgoingMessage];
 }
 
+#pragma mark SINMessageClient
+// Receiving an incoming message.
+- (void)messageClient:(id<SINMessageClient>)messageClient didReceiveIncomingMessage:(id<SINMessage>)message
+{
+    NSLog(@"Received a message");
+    [self.messages addObject:@[message, @(Incoming)]];
+    [self.tableView reloadData];
+}
+
+// Finish sending a message
+- (void)messageSent:(id<SINMessage>)message recipientId:(NSString *)recipientId
+{
+    NSLog(@"Finished sending a message");
+    self.messageTextField.text = @"";
+    [self.messages addObject:@[message, @(Outgoing)]];
+    [self.tableView reloadData];
+}
+
+// Failed to send a message
+- (void)messageFailed:(id<SINMessage>)message info:(id<SINMessageFailureInfo>)messageFailureInfo
+{
+    NSLog(@"Failed to send a message:%@", messageFailureInfo.error.localizedDescription);
+}
+
+-(void)messageDelivered:(id<SINMessageDeliveryInfo>)info
+{
+    NSLog(@"Message was delivered");
+}
+
+- (void)message:(id<SINMessage>)message shouldSendPushNotifications:(NSArray *)pushPairs
+{
+    NSLog(@"Recipient not online.\nShould notify recipient using push (not implemented in this tutorial).\nPlease refer to the documentation.");
+}
 @end

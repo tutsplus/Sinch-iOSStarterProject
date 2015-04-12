@@ -31,9 +31,10 @@
 		33085A691AB39B330037AC4F /* License.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 33085A681AB39B330037AC4F /* License.pdf */; };
 		33085A6C1AB3B2C80037AC4F /* UIColor+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 33085A6B1AB3B2C80037AC4F /* UIColor+Utils.m */; };
 		33085A731AB3F6B20037AC4F /* UIButton+Bootstrap.m in Sources */ = {isa = PBXBuildFile; fileRef = 33085A711AB3F6B20037AC4F /* UIButton+Bootstrap.m */; };
-		33085A771AB3F7740037AC4F /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33085A761AB3F7740037AC4F /* ChatViewController.m */; };
+		33085A771AB3F7740037AC4F /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33085A761AB3F7740037AC4F /* ContactViewController.m */; };
 		334A23D21ACDE5A30037B9B6 /* UsersAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 334A23D11ACDE5A30037B9B6 /* UsersAPIClient.m */; };
 		334A23D51ACDF3870037B9B6 /* SessionCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 334A23D41ACDF3870037B9B6 /* SessionCache.m */; };
+		335310781AD9CA3A000ADE3F /* CallingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 335310771AD9CA3A000ADE3F /* CallingViewController.m */; };
 		335C48B71AAE92770036B5D4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 335C48B61AAE92770036B5D4 /* main.m */; };
 		335C48BA1AAE92770036B5D4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 335C48B91AAE92770036B5D4 /* AppDelegate.m */; };
 		335C48BD1AAE92770036B5D4 /* FindUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 335C48BC1AAE92770036B5D4 /* FindUsersViewController.m */; };
@@ -57,6 +58,10 @@
 		33DCAF431AD330CB0091F4E6 /* SBJson4StreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DCAF3A1AD330CB0091F4E6 /* SBJson4StreamWriter.m */; };
 		33DCAF441AD330CB0091F4E6 /* SBJson4StreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DCAF3C1AD330CB0091F4E6 /* SBJson4StreamWriterState.m */; };
 		33DCAF451AD330CB0091F4E6 /* SBJson4Writer.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DCAF3E1AD330CB0091F4E6 /* SBJson4Writer.m */; };
+		33EADCEC1AD9A5FA00011B19 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33EADCEB1AD9A5FA00011B19 /* AudioToolbox.framework */; };
+		33EADCEE1AD9A60100011B19 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33EADCED1AD9A60100011B19 /* AVFoundation.framework */; };
+		33EADCF01AD9A60800011B19 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33EADCEF1AD9A60800011B19 /* Security.framework */; };
+		33EADCF21AD9A65B00011B19 /* Sinch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33EADCF11AD9A65B00011B19 /* Sinch.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,12 +115,14 @@
 		33085A6B1AB3B2C80037AC4F /* UIColor+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Utils.m"; sourceTree = "<group>"; };
 		33085A701AB3F6B20037AC4F /* UIButton+Bootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Bootstrap.h"; sourceTree = "<group>"; };
 		33085A711AB3F6B20037AC4F /* UIButton+Bootstrap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Bootstrap.m"; sourceTree = "<group>"; };
-		33085A751AB3F7740037AC4F /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
-		33085A761AB3F7740037AC4F /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
+		33085A751AB3F7740037AC4F /* ContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactViewController.h; sourceTree = "<group>"; };
+		33085A761AB3F7740037AC4F /* ContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactViewController.m; sourceTree = "<group>"; };
 		334A23D01ACDE5A30037B9B6 /* UsersAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersAPIClient.h; sourceTree = "<group>"; };
 		334A23D11ACDE5A30037B9B6 /* UsersAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsersAPIClient.m; sourceTree = "<group>"; };
 		334A23D31ACDF3870037B9B6 /* SessionCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionCache.h; sourceTree = "<group>"; };
 		334A23D41ACDF3870037B9B6 /* SessionCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionCache.m; sourceTree = "<group>"; };
+		335310761AD9CA3A000ADE3F /* CallingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallingViewController.h; sourceTree = "<group>"; };
+		335310771AD9CA3A000ADE3F /* CallingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallingViewController.m; sourceTree = "<group>"; };
 		335C48B11AAE92770036B5D4 /* SinchTutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SinchTutorial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		335C48B51AAE92770036B5D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		335C48B61AAE92770036B5D4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -160,6 +167,10 @@
 		33DCAF3C1AD330CB0091F4E6 /* SBJson4StreamWriterState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJson4StreamWriterState.m; sourceTree = "<group>"; };
 		33DCAF3D1AD330CB0091F4E6 /* SBJson4Writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson4Writer.h; sourceTree = "<group>"; };
 		33DCAF3E1AD330CB0091F4E6 /* SBJson4Writer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJson4Writer.m; sourceTree = "<group>"; };
+		33EADCEB1AD9A5FA00011B19 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		33EADCED1AD9A60100011B19 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		33EADCEF1AD9A60800011B19 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		33EADCF11AD9A65B00011B19 /* Sinch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sinch.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,7 +178,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33EADCF01AD9A60800011B19 /* Security.framework in Frameworks */,
+				33EADCEE1AD9A60100011B19 /* AVFoundation.framework in Frameworks */,
+				33EADCEC1AD9A5FA00011B19 /* AudioToolbox.framework in Frameworks */,
 				33CC56171ABA2F6700CFB20C /* CoreGraphics.framework in Frameworks */,
+				33EADCF21AD9A65B00011B19 /* Sinch.framework in Frameworks */,
 				335C48E21AAE9E780036B5D4 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -321,6 +336,10 @@
 		335C48DD1AAE9DFC0036B5D4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				33EADCEF1AD9A60800011B19 /* Security.framework */,
+				33EADCED1AD9A60100011B19 /* AVFoundation.framework */,
+				33EADCEB1AD9A5FA00011B19 /* AudioToolbox.framework */,
+				33EADCF11AD9A65B00011B19 /* Sinch.framework */,
 				3392FAE91ABA3EAA009633AF /* CoreLocation.framework */,
 				33CC56161ABA2F6700CFB20C /* CoreGraphics.framework */,
 				335C48E11AAE9E780036B5D4 /* FacebookSDK.framework */,
@@ -354,10 +373,12 @@
 				335C48E41AAEA0EF0036B5D4 /* LoginViewController.m */,
 				3301B15A1AB13C6100B388F9 /* SinchTutTabBarViewController.h */,
 				3301B15B1AB13C6100B388F9 /* SinchTutTabBarViewController.m */,
-				33085A751AB3F7740037AC4F /* ChatViewController.h */,
-				33085A761AB3F7740037AC4F /* ChatViewController.m */,
+				33085A751AB3F7740037AC4F /* ContactViewController.h */,
+				33085A761AB3F7740037AC4F /* ContactViewController.m */,
 				33C6B5B51ACB8FC200CF9D94 /* MessagingViewController.h */,
 				33C6B5B61ACB8FC200CF9D94 /* MessagingViewController.m */,
+				335310761AD9CA3A000ADE3F /* CallingViewController.h */,
+				335310771AD9CA3A000ADE3F /* CallingViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -486,13 +507,14 @@
 				33085A261AB213380037AC4F /* UIAlertView+AFNetworking.m in Sources */,
 				33085A6C1AB3B2C80037AC4F /* UIColor+Utils.m in Sources */,
 				334A23D21ACDE5A30037B9B6 /* UsersAPIClient.m in Sources */,
+				335310781AD9CA3A000ADE3F /* CallingViewController.m in Sources */,
 				3301B15C1AB13C6100B388F9 /* SinchTutTabBarViewController.m in Sources */,
 				33DCAF431AD330CB0091F4E6 /* SBJson4StreamWriter.m in Sources */,
 				33085A0F1AB2131E0037AC4F /* AFURLResponseSerialization.m in Sources */,
 				33085A271AB213380037AC4F /* UIButton+AFNetworking.m in Sources */,
 				33CC56151ABA233600CFB20C /* User.m in Sources */,
 				33085A731AB3F6B20037AC4F /* UIButton+Bootstrap.m in Sources */,
-				33085A771AB3F7740037AC4F /* ChatViewController.m in Sources */,
+				33085A771AB3F7740037AC4F /* ContactViewController.m in Sources */,
 				33DCAF3F1AD330CB0091F4E6 /* SBJson4Parser.m in Sources */,
 				33C6B5AB1ACAD97B00CF9D94 /* RecipientTableViewCell.m in Sources */,
 				33DCAF401AD330CB0091F4E6 /* SBJson4StreamParser.m in Sources */,
@@ -625,11 +647,17 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/jordanmorgan/Documents/FacebookSDK,
+					"$(PROJECT_DIR)/SinchTutorial",
 				);
 				GCC_PREFIX_HEADER = SinchTutorial/PrefixHeader.pch;
 				INFOPLIST_FILE = SinchTutorial/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-ObjC",
+					"-Xlinker",
+					"-lc++",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -641,6 +669,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/jordanmorgan/Documents/FacebookSDK,
+					"$(PROJECT_DIR)/SinchTutorial",
 				);
 				GCC_PREFIX_HEADER = SinchTutorial/PrefixHeader.pch;
 				INFOPLIST_FILE = SinchTutorial/Info.plist;

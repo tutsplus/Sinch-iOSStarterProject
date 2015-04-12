@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+@class User;
 
 @interface MessagingViewController : UIViewController
-
+@property (strong, nonatomic) User *selectedUser;
 @end

@@ -124,7 +124,7 @@ static NSString * const baseURL = @"http://mobilesinch.bitslice.net/";
     SBJson4Writer *jsonWriter = [SBJson4Writer new];
     NSString *locationString = [jsonWriter stringWithObject:location];
     
-    //Add the params
-    return  @{@"email":user.email, @"fbId":user.userID, @"gender": user.gender, @"location":locationString, @"mobile": @"14173966930", @"name":user.userName, @"locationText": user.locationText};
+    //Add the params (currently Facebook SDK doesn't support phone # permissions - left param in if that changes)
+    return  @{@"email":user.email, @"fbId":user.userID, @"gender": user.gender, @"location":locationString, @"mobile": @"", @"name":user.userName, @"locationText": (user.locationText.length > 0 ? user.locationText : @"")};
 }
 @end

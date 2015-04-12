@@ -12,4 +12,5 @@
 #import "UsersAPIClient.h"
 #import "AppearanceManager.h"
 #import "SessionCache.h"
+#import "AppDelegate.h"
 #endif
