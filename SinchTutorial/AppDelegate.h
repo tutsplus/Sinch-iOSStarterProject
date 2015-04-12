@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <Sinch/Sinch.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

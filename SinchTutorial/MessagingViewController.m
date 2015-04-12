@@ -18,7 +18,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *messageTextField;
 @property (weak, nonatomic) IBOutlet UIButton *btnSendMessage;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *messagingBottomConstraint;
-@property (strong, nonatomic) id<SINMessageClient> sinchMessageClient;
 @end
 
 static NSString * CELL_ID_RECIPIENT = @"RecipientCell";
