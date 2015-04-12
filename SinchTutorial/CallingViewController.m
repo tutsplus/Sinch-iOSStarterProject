@@ -51,6 +51,7 @@
     {
         [self.sinchCall answer];
         self.lblCallStatus.text = [NSString stringWithFormat:@"- talking to %@ -", self.selectedUser.userName];
+        [self.btnDeny setTitle:@"End" forState:UIControlStateNormal];
     }
 }
 
@@ -70,11 +71,6 @@
     self.lblCallStatus.text = [NSString stringWithFormat:@"- incoming call from %@ -", self.selectedUser.userName];
     [self.btnAcceptOrCall setTitle:@"Accept Call" forState:UIControlStateNormal];
     self.btnDeny.hidden = NO;
-}
-
-- (void)callDidProgress:(id<SINCall>)call
-{
-    // In this method you can play ringing tone and update ui to display progress of call.
 }
 
 - (void)callDidEstablish:(id<SINCall>)call
@@ -97,4 +93,8 @@
     });
 }
 
+- (void)callDidProgress:(id<SINCall>)call
+{
+    // In this method you can play ringing tone and update ui to display progress of call.
+}
 @end
