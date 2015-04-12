@@ -79,6 +79,7 @@
     self.btnDeny.hidden = NO;
     [self.btnDeny setTitle:@"Hang Up" forState:UIControlStateNormal];
     self.lblCallStatus.text = @"- call connected -";
+    self.btnAcceptOrCall.hidden = YES;
 }
 
 - (void)callDidEnd:(id<SINCall>)call
