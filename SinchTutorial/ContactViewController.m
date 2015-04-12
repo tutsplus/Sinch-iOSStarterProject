@@ -12,7 +12,6 @@
 #import "UIButton+Bootstrap.h"
 #import "User.h"
 #import "MessagingViewController.h"
-#import <Sinch/Sinch.h>
 
 @interface ContactViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *btnMessage;

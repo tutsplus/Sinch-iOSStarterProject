@@ -62,7 +62,7 @@
 }
 
 
-#pragma mark - SINCallClient
+#pragma mark - SINCall/Client
 - (void)client:(id<SINCallClient>)client didReceiveIncomingCall:(id<SINCall>)call
 {
     self.sinchCall = call;
