@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>B5C50A11-B228-42A5-B4E0-F8299886467A</string>
+	<key>IDESourceControlProjectName</key>
+	<string>SinchTutorial</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>3723836A3BD3CC888544E497F06AB4173D557C0B</key>
+		<string>https://github.com/DreamingInBinary/SinchTutorial.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>SinchTutorial.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>3723836A3BD3CC888544E497F06AB4173D557C0B</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/DreamingInBinary/SinchTutorial.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>3723836A3BD3CC888544E497F06AB4173D557C0B</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>3723836A3BD3CC888544E497F06AB4173D557C0B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>SinchTutorial</string>
+		</dict>
+	</array>
+</dict>
+</plist>
