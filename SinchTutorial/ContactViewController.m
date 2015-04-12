@@ -12,7 +12,6 @@
 #import "UIButton+Bootstrap.h"
 #import "User.h"
 #import "MessagingViewController.h"
-#import <Sinch/Sinch.h>
 
 @interface ContactViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *btnMessage;
@@ -21,7 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblSelectedUserName;
 @property (weak, nonatomic) IBOutlet UserAvatar *imgUserProfile;
 @property (strong, nonatomic) AppDelegate *delegate;
-@property (strong, nonatomic) id<SINCall> sinchCall;
+
 @end
 
 @implementation ContactViewController

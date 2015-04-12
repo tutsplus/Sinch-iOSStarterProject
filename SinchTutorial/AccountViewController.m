@@ -32,11 +32,6 @@
     [self.btnInbox primaryStyle];
 }
 
-- (IBAction)goToInbox:(UIButton *)sender
-{
-    //TODO: Maybe do this?
-}
-
 #pragma mark - Facebook Delegate
 // Logged-out user experience
 - (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView

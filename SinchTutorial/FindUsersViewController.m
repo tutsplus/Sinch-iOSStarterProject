@@ -125,9 +125,7 @@ NSString * const CELL_ID = @"CELLID";
     [[UsersAPIClient sharedManager] beginUserSession:self.curUser completion:^{
         [[SessionCache manager] cacheUser:self.curUser];
         
-        //Init sinch client
-        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        [delegate sinchClientWithUserId:self.curUser.userID];
+        //TODO: Initialize Sinch client
         
         //We've got an access token, now get the rest of the users
         [self getUsersAndReloadTableView];

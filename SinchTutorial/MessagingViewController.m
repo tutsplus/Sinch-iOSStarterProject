@@ -11,15 +11,8 @@
 #import "RecipientTableViewCell.h"
 #import "TextInsetLabel.h"
 #import "User.h"
-#import <Sinch/Sinch.h>
 
-typedef NS_ENUM(int, MessageDirection)
-{
-    Incoming,
-    Outgoing
-};
-
-@interface MessagingViewController () <UITableViewDataSource, UITableViewDataSource, UITextFieldDelegate, SINMessageClientDelegate>
+@interface MessagingViewController () <UITableViewDataSource, UITableViewDataSource, UITextFieldDelegate>
 @property (strong, nonatomic) NSMutableArray *messages;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextField *messageTextField;
@@ -48,9 +41,6 @@ static NSString * CELL_ID_USER = @"UserCell";
     //Textfield Setup
     [self textFieldSetup];
     
-    //Setup Sinch message client
-    self.sinchMessageClient = [((AppDelegate *)[[UIApplication sharedApplication] delegate]).client messageClient];
-    self.sinchMessageClient.delegate = self;
 }
 
 #pragma mark - Textfield Delegate & Helpers
@@ -122,63 +112,14 @@ static NSString * CELL_ID_USER = @"UserCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell;
-    id<SINMessage> message = [self.messages[indexPath.row] firstObject];
-    MessageDirection direction = (MessageDirection)[[self.messages[indexPath.row] lastObject] intValue];
-    
-    if (direction == Incoming)
-    {
-        cell = [self.tableView dequeueReusableCellWithIdentifier:CELL_ID_RECIPIENT];
-        ((RecipientTableViewCell *)cell).message.text = message.text;
-    }
-    else
-    {
-        cell = [self.tableView dequeueReusableCellWithIdentifier:CELL_ID_USER];
-        ((UsersTableViewCell *)cell).message.text = message.text;
-    }
-    
+    UITableViewCell *cell = [UITableViewCell new];
     return cell;
 }
 
 #pragma mark - Sending Message
 - (IBAction)sendMessage:(id)sender
 {
-    [self dismissKeyboard];
-    SINOutgoingMessage *outgoingMessage = [SINOutgoingMessage messageWithRecipient:self.selectedUser.userID text:self.messageTextField.text];
-    [self.sinchMessageClient sendMessage:outgoingMessage];
+
 }
 
-#pragma mark SINMessageClient
-// Receiving an incoming message.
-- (void)messageClient:(id<SINMessageClient>)messageClient didReceiveIncomingMessage:(id<SINMessage>)message
-{
-    NSLog(@"Received a message");
-    [self.messages addObject:@[message, @(Incoming)]];
-    [self.tableView reloadData];
-}
-
-// Finish sending a message
-- (void)messageSent:(id<SINMessage>)message recipientId:(NSString *)recipientId
-{
-    NSLog(@"Finished sending a message");
-    self.messageTextField.text = @"";
-    [self.messages addObject:@[message, @(Outgoing)]];
-    [self.tableView reloadData];
-}
-
-// Failed to send a message
-- (void)messageFailed:(id<SINMessage>)message info:(id<SINMessageFailureInfo>)messageFailureInfo
-{
-    NSLog(@"Failed to send a message:%@", messageFailureInfo.error.localizedDescription);
-}
-
--(void)messageDelivered:(id<SINMessageDeliveryInfo>)info
-{
-    NSLog(@"Message was delivered");
-}
-
-- (void)message:(id<SINMessage>)message shouldSendPushNotifications:(NSArray *)pushPairs
-{
-    NSLog(@"Recipient not online.\nShould notify recipient using push (not implemented in this tutorial).\nPlease refer to the documentation.");
-}
 @end

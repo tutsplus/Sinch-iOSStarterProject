@@ -58,10 +58,6 @@
 		33DCAF431AD330CB0091F4E6 /* SBJson4StreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DCAF3A1AD330CB0091F4E6 /* SBJson4StreamWriter.m */; };
 		33DCAF441AD330CB0091F4E6 /* SBJson4StreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DCAF3C1AD330CB0091F4E6 /* SBJson4StreamWriterState.m */; };
 		33DCAF451AD330CB0091F4E6 /* SBJson4Writer.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DCAF3E1AD330CB0091F4E6 /* SBJson4Writer.m */; };
-		33EADCEC1AD9A5FA00011B19 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33EADCEB1AD9A5FA00011B19 /* AudioToolbox.framework */; };
-		33EADCEE1AD9A60100011B19 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33EADCED1AD9A60100011B19 /* AVFoundation.framework */; };
-		33EADCF01AD9A60800011B19 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33EADCEF1AD9A60800011B19 /* Security.framework */; };
-		33EADCF21AD9A65B00011B19 /* Sinch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33EADCF11AD9A65B00011B19 /* Sinch.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -167,10 +163,6 @@
 		33DCAF3C1AD330CB0091F4E6 /* SBJson4StreamWriterState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJson4StreamWriterState.m; sourceTree = "<group>"; };
 		33DCAF3D1AD330CB0091F4E6 /* SBJson4Writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson4Writer.h; sourceTree = "<group>"; };
 		33DCAF3E1AD330CB0091F4E6 /* SBJson4Writer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJson4Writer.m; sourceTree = "<group>"; };
-		33EADCEB1AD9A5FA00011B19 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		33EADCED1AD9A60100011B19 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		33EADCEF1AD9A60800011B19 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		33EADCF11AD9A65B00011B19 /* Sinch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sinch.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,11 +170,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33EADCF01AD9A60800011B19 /* Security.framework in Frameworks */,
-				33EADCEE1AD9A60100011B19 /* AVFoundation.framework in Frameworks */,
-				33EADCEC1AD9A5FA00011B19 /* AudioToolbox.framework in Frameworks */,
 				33CC56171ABA2F6700CFB20C /* CoreGraphics.framework in Frameworks */,
-				33EADCF21AD9A65B00011B19 /* Sinch.framework in Frameworks */,
 				335C48E21AAE9E780036B5D4 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,10 +324,6 @@
 		335C48DD1AAE9DFC0036B5D4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				33EADCEF1AD9A60800011B19 /* Security.framework */,
-				33EADCED1AD9A60100011B19 /* AVFoundation.framework */,
-				33EADCEB1AD9A5FA00011B19 /* AudioToolbox.framework */,
-				33EADCF11AD9A65B00011B19 /* Sinch.framework */,
 				3392FAE91ABA3EAA009633AF /* CoreLocation.framework */,
 				33CC56161ABA2F6700CFB20C /* CoreGraphics.framework */,
 				335C48E11AAE9E780036B5D4 /* FacebookSDK.framework */,
@@ -653,11 +637,6 @@
 				INFOPLIST_FILE = SinchTutorial/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				"OTHER_LDFLAGS[arch=*]" = (
-					"-ObjC",
-					"-Xlinker",
-					"-lc++",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;

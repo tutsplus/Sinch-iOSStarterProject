@@ -48,40 +48,7 @@
 }
 
 #pragma mark - Sinch
-- (void)sinchClientWithUserId:(NSString *)userId
-{
-    if (!_client)
-    {
-        _client = [Sinch clientWithApplicationKey:@"c94e1876-2a60-4168-b068-20e982af0cb8"
-                                applicationSecret:@"zuxYbgF8OkOVHREnwccnDQ=="
-                                  environmentHost:@"sandbox.sinch.com"
-                                           userId:userId];
-        _client.delegate = self;
-        
-        [_client setSupportCalling:YES];
-        [_client setSupportMessaging:YES];
-        [_client start];
-        [_client startListeningOnActiveConnection];
-    }
-}
-
-- (void)clientDidStart:(id<SINClient>)client
-{
-    NSLog(@"Sinch client started successfully (version: %@)", [Sinch version]);
-}
-
-- (void)clientDidFail:(id<SINClient>)client error:(NSError *)error
-{
-    NSLog(@"Sinch client error: %@", [error localizedDescription]);
-}
-
-- (void)client:(id<SINClient>)client logMessage:(NSString *)message area:(NSString *)area severity:(SINLogSeverity)severity timestamp:(NSDate *)timestamp
-{
-    if (severity == SINLogSeverityCritical)
-    {
-        NSLog(@"%@", message);
-    }
-}
+//TODO: Sinch client logic
 
 #pragma mark - Facebook
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
